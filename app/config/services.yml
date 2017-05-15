@@ -26,3 +26,10 @@ services:
     app.manager.user:
         class: AppBundle\Manager\UserManager
         arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder"]
+
+    app.security.voter.game:
+        class: AppBundle\Security\GameVoter
+        public: false
+        tags:
+            - { name: security.voter }
+

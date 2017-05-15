@@ -11,7 +11,6 @@ namespace AppBundle\Command;
 
 use AppBundle\Game\Game;
 use AppBundle\Game\WordList;
-use Doctrine\Common\Proxy\Exception\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
