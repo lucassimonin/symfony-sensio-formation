@@ -1,0 +1,28 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.loader.txt:
+        class: AppBundle\Game\Loader\TextFileLoader
+    app.loader.xml:
+        class: AppBundle\Game\Loader\XmlFileLoader
+    app.wordlist:
+        class: AppBundle\Game\WordList
+        calls:
+            - { method: addLoader, arguments: ["txt", "@app.loader.txt" ] }
+            - { method: addLoader, arguments: ["xml", "@app.loader.xml"] }
+            - { method: loadDictionaries, arguments: [ "%dictionaries%" ] }
+    app.game_context:
+        class: AppBundle\Game\GameContext
+        arguments: [ "@session" ]
+    app.game_runner:
+        class: AppBundle\Game\GameRunner
+        arguments: [ "@app.game_context", "@app.wordlist" ]
+    game_runner:
+        alias: app.game_runner
+
+    app.manager.user:
+        class: AppBundle\Manager\UserManager
+        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder"]

@@ -1,0 +1,30 @@
+security:
+    encoders:
+        AppBundle\Entity\User: bcrypt
+
+    providers:
+        users:
+            entity:
+                class: AppBundle\Entity\User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: "^/(en|fr)/game"
+            provider: users
+            anonymous: ~
+            form_login:
+                check_path: login_check
+                login_path: login
+            logout:
+                path: logout
+                target: homepage
+
+    access_control:
+        - { path: "^/(en|fr)/game/login", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "^/(en|fr)/game/register", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "^/(en|fr)/game", roles: ROLE_USER }

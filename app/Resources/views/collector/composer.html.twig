@@ -1,0 +1,30 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <div class="sf-toolbar-icon">
+            <span class="sf-toolbar-value">00</span>
+            <span class="sf-toolbar-label">packages</span>
+        </div>
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            NUMBER of Composer packages
+        </div>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig',
+        { 'link': profiler_url }
+    ) }}
+{% endblock %}
+
+{% block menu %}
+    <span class="label">
+        <strong>Composer</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    TABLE with package name, version and license
+{% endblock %}

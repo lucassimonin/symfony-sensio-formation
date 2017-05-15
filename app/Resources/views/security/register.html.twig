@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} Register
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button type="submit">{{ 'button.submit'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}
