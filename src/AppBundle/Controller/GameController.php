@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route(
@@ -16,6 +18,14 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class GameController extends Controller
 {
+    /**
+     * @Cache(smaxage=10)
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function hourAction()
+    {
+        return new Response(date('H:i:s'));
+    }
     /**
      * @Route("/", name="game_home")
      * @Security("is_granted('PLAY')")

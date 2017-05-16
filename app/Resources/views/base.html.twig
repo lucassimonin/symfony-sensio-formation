@@ -18,7 +18,7 @@
 
         {{ include('_menu.html.twig') }}
     </div>
-
+{% block page %}
     <div id="page">
         <div id="content">
             {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -33,7 +33,7 @@
             {{ render(controller('AppBundle:Game:testimonials')) }}
         </div>
         <div id="sidebar">
-            <h3>{{ 'last_games'|trans }}</h3>
+            <h3>{{ 'last_games'|trans }} - {{ render(controller('AppBundle:Game:hour')) }}</h3>
             <div class="date-list">
                 <ul class="list date-list">
 
@@ -56,6 +56,6 @@
         <br class="clearfix" />
     </div>
 </div>
-
+{% endblock %}
 </body>
 </html>

@@ -6,13 +6,15 @@ parameters:
 services:
     app.loader.txt:
         class: AppBundle\Game\Loader\TextFileLoader
+        tags:
+            - { type: txt, name: word_list.loader }
     app.loader.xml:
         class: AppBundle\Game\Loader\XmlFileLoader
+        tags:
+            - { type: xml, name: word_list.loader }
     app.wordlist:
         class: AppBundle\Game\WordList
         calls:
-            - { method: addLoader, arguments: ["txt", "@app.loader.txt" ] }
-            - { method: addLoader, arguments: ["xml", "@app.loader.xml"] }
             - { method: loadDictionaries, arguments: [ "%dictionaries%" ] }
     app.game_context:
         class: AppBundle\Game\GameContext
@@ -32,4 +34,11 @@ services:
         public: false
         tags:
             - { name: security.voter }
+
+    app.event_subscriber.open_close:
+        class: AppBundle\EventSubscriber\OpenCloseSubscriber
+        arguments:
+            - "@templating"
+        tags:
+            - { name: kernel.event_subscriber }
 

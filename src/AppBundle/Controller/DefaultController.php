@@ -19,6 +19,11 @@ class DefaultController extends Controller
         return $this->render('index.html.twig');
     }
 
+    /*public function closeAction()
+    {
+        return $this->render('')
+    }*/
+
     /**
      * @Route("{_locale}/contact", name="contact")
      */
